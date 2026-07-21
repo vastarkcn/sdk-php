@@ -17,7 +17,9 @@ $client = new Client(new Config(
     'http://127.0.0.1',
     'replace-with-api-key',
     3.0,
-    FailureMode::STRICT_BLOCK
+    FailureMode::STRICT_BLOCK,
+    // 可选：从上下文传入当前请求的 trace ID 实现全链路追踪
+    function () { return 'trace-id-from-ctx'; }
 ));
 
 $resp = $client->generate(new GenerateRequest(

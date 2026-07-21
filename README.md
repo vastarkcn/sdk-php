@@ -27,7 +27,9 @@ $client = new Client(new Config(
     'http://127.0.0.1:8090',
     'your-api-key',
     3.0,
-    FailureMode::STRICT_BLOCK
+    FailureMode::STRICT_BLOCK,
+    // 可选：传入当前请求的 trace ID，自动作为 X-Log-Id 透传
+    function () { return 'trace-id-from-ctx'; }
 ));
 
 $resp = $client->generate(new GenerateRequest(
